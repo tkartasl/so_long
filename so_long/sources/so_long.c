@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:12:14 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/24 15:50:15 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/01/26 10:26:42 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ int32_t	main(int argc, char *argv[])
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	mlx_texture_t	*texture;
+	char			**map;
 	
 	if (argc != 2 || argv[1][0] == 0)
 		return (0);
-	map_check(argv[1]);
+	map = map_check(argv[1]);
 	mlx = mlx_init(WIDTH, HEIGHT, "Best game ever", true);
 	if (mlx == 0)
 		error_handler();
