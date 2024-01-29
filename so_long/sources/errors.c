@@ -6,11 +6,17 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:10:04 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/26 13:49:13 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:02:41 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void ft_error(void)
+{
+    mlx_strerror(mlx_errno);
+    exit(EXIT_FAILURE);
+}
 
 void	map_error(char	*str, int flag)
 {

@@ -1,50 +1,30 @@
-#include "../libft/libft.h"
-#include <stdio.h>
+#include "../include/so_long.h"
 
-typedef struct s_items
+void ft_error(void)
 {
-	int	c_count;
-	int	exit;
-	int p_pos_r;
-	int	p_pos_c;
-}		t_items;
+	mlx_strerror(mlx_errno);
+	exit(EXIT_FAILURE);
 
-void	check_last_line(char **map, size_t linecount)
-{
-	int	i;
-
-	i = 0;
-	while(map[linecount - 1][i] != 0)
-	{
-		if (map[linecount - 1][i] != '1')
-		{
-			ft_free_pointer_array(map);
-			ft_printf("Error\nMap not completely surrounded by walls");
-			exit(EXIT_FAILURE);
-		} 
-		i++;
-	}
 }
-
-
-
-
-
-
-
-
-
-
-
-int main(void)
+int main()
 {
-	char	*str;
-	int		fd;
-	t_items	item;
-	char	**map;
-
-	ft_memset(&item, 0, sizeof(t_items));
-	str = "../maps/map1.ber";
-	fd = open(str, O_RDONLY);
-	map = make_map_array(fd, 6, &item);
+	mlx_t		*mlx;
+	mlx_image_t	*wall;
+	/*mlx_image_t	*floor;			
+	mlx_image_t	*player;
+	mlx_image_t	*end;
+	mlx_image_t	*collect;*/
+	
+	mlx = mlx_init(WIDTH, HEIGHT, "Best Game Ever!", true);
+	if(mlx == 0)
+		ft_error();
+	wall = mlx_new_image(mlx, 50, 50);
+	if (wall == 0)
+		ft_error();
+	ft_memset(wall->pixels, 255, wall->width * wall->height * sizeof(int));
+	if(mlx_image_to_window(mlx, wall, 0, 50) < 0)
+		ft_error();
+	mlx_loop(mlx);
+	mlx_terminate(mlx);
+	return (EXIT_SUCCESS);
 }

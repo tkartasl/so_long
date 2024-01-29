@@ -6,57 +6,98 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:12:14 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/26 10:26:42 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/01/29 16:28:50 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	my_key_hook(void *param, mlx_image_t *image)
+void	texture_to_image(mlx_t *mlx, t_images *img, t_textures *texture)
 {
-	mlx_t	*mlx;
-
-	mlx = param;
-	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
-	{	
-		mlx_close_window(param);
-		mlx_terminate(mlx);
-		exit (EXIT_SUCCESS);
-	}
-	if (mlx_is_key_down(param, MLX_KEY_W))
-		image->instances[0].y -= 5;
-	if (mlx_is_key_down(param, MLX_KEY_S))
-		image->instances[0].y += 5;
-	if (mlx_is_key_down(param, MLX_KEY_A))
-		image->instances[0].x -= 5;
-	if (mlx_is_key_down(param, MLX_KEY_D))
-		image->instances[0].x += 5;
+	img->collectible = mlx_texture_to_image(mlx, texture->pizza);	
+	if (img->collectible == 0)
+		ft_error();
+	img->exit = mlx_texture_to_image(mlx, texture->exit);	
+	if (img->exit == 0)
+		ft_error();	
+	img->player = mlx_texture_to_image(mlx, texture->player);	
+	if (img->player == 0)
+		ft_error();
+	img->wall = mlx_texture_to_image(mlx, texture->tree);	
+	if (img->wall == 0)
+		ft_error();
+	img->floor = mlx_texture_to_image(mlx, texture->grass);	
+	if (img->floor == 0)
+		ft_error();
 }
 
-int32_t	main(int argc, char *argv[])
+void	get_textures(mlx_t *mlx, t_images *img, t_textures *texture)
 {
-	mlx_t			*mlx;
-	mlx_image_t		*image;
-	mlx_texture_t	*texture;
-	char			**map;
-	
+	texture->grass = mlx_load_png("../textures/grass.png");
+	if (texture->grass == 0)
+		ft_error();
+	texture->pizza = mlx_load_png("../textures/pizza.png");
+	if (texture->pizza == 0)
+		ft_error();
+	texture->player = mlx_load_png("../textures/Necromancer.png");
+	if (texture->player == 0)
+		ft_error();
+	texture->exit = mlx_load_png("../textures/Blackhole.png");
+	if (texture->exit == 0)
+		ft_error();
+	texture->tree = mlx_load_png("../textures/tree.png");
+	if (texture->tree == 0)
+		ft_error();	
+}
+
+
+void	make_images(mlx_t *mlx, t_images *img)
+{
+	img->collectible = mlx_new_image(mlx, BLOCK, BLOCK);
+	if (img->collectible == 0)
+		ft_error();
+	img->exit = mlx_new_image(mlx, BLOCK, BLOCK);
+	if (img->exit == 0)
+		ft_error();	
+	img->floor = mlx_new_image(mlx, BLOCK, BLOCK);
+	if (img->floor == 0)
+		ft_error();
+	img->player = mlx_new_image(mlx, BLOCK, BLOCK);
+	if (img->player == 0)
+		ft_error();
+	img->wall = mlx_new_image(mlx, BLOCK, BLOCK);
+	if (img->wall == 0)
+		ft_error();
+}
+
+void	create_window(char **map, t_items *item, t_images *img, t_textures *tx)
+{	
+	mlx_t	*mlx;
+	char	*title;
+
+	title = "Best Game Ever!";
+	mlx = mlx_init(item->width * BLOCK, item->height * BLOCK, title, true);
+	if (mlx == 0)
+		ft_error();
+	make_images(img);
+	get_textures(mlx, tx);
+	texture_to_image(mlx, img, tx);
+	build_map();
+}
+
+int	main(int argc, char *argv[])
+{
+	t_items		item;
+	t_images	img;
+	t_textures	texture;
+	char		**map;
+		
 	if (argc != 2 || argv[1][0] == 0)
 		return (0);
-	map = map_check(argv[1]);
-	mlx = mlx_init(WIDTH, HEIGHT, "Best game ever", true);
-	if (mlx == 0)
-		error_handler();
-	texture = mlx_load_png("../textures/");
-	if (texture == 0)
-		error_handler();
-	image = mlx_texture_to_image(mlx, texture);
-	if (image == 0)
-		error_handler();
-	if (mlx_image_to_window(mlx, image, 0, 0) < 0)
-		error_handler();
-	mlx_key_hook(mlx, &my_key_hook, image);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	map = map_check(argv[1], &item);
+	ft_memset(&item, 0, sizeof(t_items));
+	ft_memset(&img, 0, sizeof(t_images));
+	create_window(map, &item, &img, &texture);
+
 	return(EXIT_SUCCESS);
 }
-

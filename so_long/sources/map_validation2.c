@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:12:39 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/26 14:54:10 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:54:03 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ char	**make_map_array(int fd, size_t linecount, t_items *item)
 	}
 	map[i] = 0;
 	close(fd);
+	item->height = linecount;
+	item->width = ft_strlen(map[0]) - 1;
 	check_last_line(map, linecount);
 	validate_path(map, item, linecount);
 	return (map);

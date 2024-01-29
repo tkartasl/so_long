@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 09:02:39 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/26 14:40:12 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:47:17 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,15 +100,13 @@ void	iterate_map(int fd, size_t *linecount)
 	free(line);
 }
 
-char	**map_check(char *filename)
+char	**map_check(char *filename, t_items *item)
 {
 	int		fd;
 	size_t	linecount;
 	char	*line;
 	char	**map;
-	t_items	item;
-	
-	ft_memset(&item, 0, sizeof(t_items));
+
 	line = "";
 	linecount = 0;
 	fd = open(filename, O_RDONLY);
@@ -119,6 +117,6 @@ char	**map_check(char *filename)
 	fd = open(filename, O_RDONLY);
 	if(fd == -1)
 		exit(EXIT_FAILURE);
-	map = make_map_array(fd, linecount, &item);
+	map = make_map_array(fd, linecount, item);
 	return (map);
 }
