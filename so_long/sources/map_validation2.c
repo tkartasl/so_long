@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:12:39 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/29 14:54:03 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:59:20 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	validate_path(char **map, t_items *item, size_t linecount)
 	collectibles = flood_fill(map, item, linecount, row, col);
 	if (collectibles != item->c_count || item->exit != 1)
 	{
+		ft_printf("Error\nNo valid path on the map");
 		ft_free_pointer_array(map);
 		exit(EXIT_FAILURE);
 	}

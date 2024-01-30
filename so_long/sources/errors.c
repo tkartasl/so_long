@@ -6,15 +6,32 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:10:04 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/29 15:02:41 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:25:18 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void ft_error(void)
+void	error_map_size(char **map)
 {
-    mlx_strerror(mlx_errno);
+		printf("Error\nMap doesn't properly fit to the screen");
+		ft_free_pointer_array(map);
+		exit(EXIT_FAILURE);
+}
+
+void ft_error2(char **map, int *instance)
+{
+	free(instance);
+	instance = 0;
+	ft_free_pointer_array(map);
+    ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
+    exit(EXIT_FAILURE);
+}	
+
+void ft_error(char **map)
+{
+	ft_free_pointer_array(map);
+    ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
     exit(EXIT_FAILURE);
 }
 
