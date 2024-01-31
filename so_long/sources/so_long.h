@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:16:44 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/31 16:18:47 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:06:41 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	item_error(char *line, int *ptr);
 void	map_error(char	*str, int flag);
 void	ft_error(char **map);
 void	error_map_size(char **map);
-void	map_check(char *filename, t_data *data);
-void	make_map_array(int fd, size_t linecount, t_data *data);
+char	**map_check(char *filename, t_items *item);
+char	**make_map_array(char *filename, size_t linecount, t_items *item);
 void	create_images(t_data *data);
 void	get_textures(t_data *data, t_textures *texture);
 void	texture_to_image(t_data *data, t_textures *tx);

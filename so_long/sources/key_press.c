@@ -6,26 +6,29 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:20:13 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/30 17:50:27 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/01/31 16:31:30 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_if_finished(t_data *data)
+static	void	check_if_finished(t_data *data)
 {
-	char	*success;
+	char		*success;
+	mlx_image_t	*image;
 
-	success = "Congratulations!!!"
-	if (data->info->c_count == 0)	
+	image = 0;
+	success = "CONGRATULATIONS, YOU ARE AMAZING!!!";
+	if (data->info->c_count == 0)
 	{
 		data->player->enabled = false;
-		
+		image = mlx_put_string(data->mlx, success, data->info->width / 2 * IMG, 0);
+		if (image == 0)
+			ft_error(data->map);
 	}
-	
 }
 
-void	disable_img_instance(t_data *data)
+static	void	disable_img_instance(t_data *data, int x , int y)
 {
 	int	i;
 
@@ -37,7 +40,7 @@ void	disable_img_instance(t_data *data)
 	data->info->c_count--;		
 }
 
-void	move_player(t_data *data, char key)
+static	void	move_player(t_data *data, char key)
 {
 	static int	x;
 	static int	y;
@@ -54,7 +57,7 @@ void	move_player(t_data *data, char key)
 	if (key == 'D' && data->map[y][x + 1] != '1')
 		data->player->instances[0].x += 50;
 	if (data->map[y][x] == 'C')
-		disable_img_instance(data);
+		disable_img_instance(data, x, y);
 	if (data->map[y][x] == 'E')
 		check_if_finished(data);
 	key_press_count++;

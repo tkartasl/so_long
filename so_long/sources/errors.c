@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:10:04 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/30 13:25:18 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:51:46 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,10 @@
 
 void	error_map_size(char **map)
 {
-		printf("Error\nMap doesn't properly fit to the screen");
+		ft_printf("Error\nMap doesn't properly fit to the screen");
 		ft_free_pointer_array(map);
 		exit(EXIT_FAILURE);
 }
-
-void ft_error2(char **map, int *instance)
-{
-	free(instance);
-	instance = 0;
-	ft_free_pointer_array(map);
-    ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
-    exit(EXIT_FAILURE);
-}	
 
 void ft_error(char **map)
 {
@@ -37,15 +28,12 @@ void ft_error(char **map)
 
 void	map_error(char	*str, int flag)
 {
-	char	*errors[]= {
-		{"Map has incorrect shape"},
-		{"Map not completely surrounded by walls"},
-		{"Incorrect character inside the map"},
-	}	
+	char	*errors[3]= {"Map has incorrect shape",
+			"Map not completely surrounded by walls",
+			"Incorrect character inside the map"};
 	ft_printf("Error\n%s\n", errors[flag]);
 	free(str);
 	str = 0;
-	errors = 0;
 	exit (EXIT_FAILURE);
 }
 

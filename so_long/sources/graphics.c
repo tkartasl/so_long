@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:48:52 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/30 15:36:16 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:46:07 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	texture_to_image(t_data *data, t_textures *tx)
 	if (data->pizza == 0)
 		ft_error(data->map);
 	data->exit = mlx_texture_to_image(data->mlx, tx->exit);	
-	if (img->exit == 0)
+	if (data->exit == 0)
 		ft_error(data->map);	
 	data->player = mlx_texture_to_image(data->mlx, tx->player);	
 	if (data->player == 0)

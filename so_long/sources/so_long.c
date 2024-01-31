@@ -6,44 +6,27 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:12:14 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/30 17:21:39 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/01/31 16:36:51 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	*get_graphics(t_data *data, t_textures *tx)
+static	void	get_graphics(t_data *data, t_textures *tx)
 {
-	int	*instance;
-	
-	instance = malloc(data->info->c_count * sizeof(int));
-	if (instance == NULL)
-	{
-		ft_free_pointer_array(data->map);
-		exit(EXIT_FAILURE);
-	}
 	create_images(data);
 	get_textures(data, tx);
 	texture_to_image(data, tx);
-	wall_image_to__map(data);
-	floor_image_to__map(data)
-	exit_image_to__map(data);
-	player_image_to__map(data);
-	pizza_image_to_map(data, instance);
-	return (instance);
+	wall_image_to_map(data);
+	floor_image_to_map(data);
+	exit_image_to_map(data);
+	player_image_to_map(data);
+	pizza_image_to_map(data);
 }
 
-void	manage_movement(char **map, int	*instance, t_data *data)
-{
-	if ()
-
-
-}
-
-void	create_window(t_data *data, t_textures *tx)
+static	void	create_window(t_data *data, t_textures *tx)
 {	
 	char	*title;
-	int		*instance;
 	int		width;
 	int		height;
 	
@@ -58,11 +41,11 @@ void	create_window(t_data *data, t_textures *tx)
 	mlx_set_window_limit(data->mlx, -1, -1, width, height);
 	//if (item->width > width || item->height > height)
 		//error_map_size(map);
-	instance = get_graphics(data, tx);
-	mlx_key_hook(data->mlx, &my_key_hook, data)
+	get_graphics(data, tx);
+	mlx_key_hook(data->mlx, &my_key_hook, data);
 	mlx_loop(data->mlx);
-	ft_free_pointer_array(data->map);
 	mlx_terminate(data->mlx);
+	ft_free_pointer_array(data->map);
 }
 
 int	main(int argc, char *argv[])
@@ -70,9 +53,12 @@ int	main(int argc, char *argv[])
 	t_items		item;
 	t_data		data;
 	t_textures	texture;
-		
-	if (argc != 2 || argv[1][0] == 0)
-		return (0);
+	
+	if (argc != 2)
+	{
+		ft_printf("Error\nWrong amount of arguments");
+		return (1);
+	}
 	ft_memset(&item, 0, sizeof(t_items));
 	ft_memset(&data, 0, sizeof(t_data));
 	ft_memset(&texture, 0, sizeof(t_textures));

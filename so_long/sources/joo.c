@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_validation.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 09:02:39 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/31 17:05:35 by tkartasl         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "so_long.h"
 
 void	check_last_line(char **map, size_t linecount)
@@ -101,13 +89,12 @@ void	iterate_map(int fd, size_t *linecount, char *line)
 	free(line);
 }
 
-char	**map_check(char *filename, t_items *item)
+void	map_check(char *filename, t_data *data)
 {
 	int		fd;
 	size_t	linecount;
 	char	*line;
-	char	**map;
-	
+
 	line = "";
 	linecount = 0;
 	fd = open(filename, O_RDONLY);
@@ -115,10 +102,8 @@ char	**map_check(char *filename, t_items *item)
 		exit(EXIT_FAILURE);
 	iterate_map(fd, &linecount, line);
 	close(fd);
-	/*fd = open(filename, O_RDONLY);
+	fd = open(filename, O_RDONLY);
 	if(fd == -1)
-		exit(EXIT_FAILURE);*/
-	map = make_map_array(filename, linecount, item);
-	return (map);
+		exit(EXIT_FAILURE);
+	make_map_array(fd, linecount, data);
 }
-
