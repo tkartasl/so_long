@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 09:02:39 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/31 17:05:35 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/01 10:28:41 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_last_line(char **map, size_t linecount)
 	}
 }
 
-size_t	check_first_line(char *line)
+static size_t	check_first_line(char *line)
 {
 	size_t	len;
 	int	i;
@@ -45,7 +45,7 @@ size_t	check_first_line(char *line)
 	return (len);
 }
 
-int	*line_check(char *line, size_t len)
+static int	*line_check(char *line, size_t len)
 {
 	size_t	i;
 	static int items[] = {0, 0, 0};
@@ -73,20 +73,17 @@ int	*line_check(char *line, size_t len)
 	return (items);
 }
 
-void	iterate_map(int fd, size_t *linecount, char *line)
+static void	iterate_map(int fd, size_t *linecount, char *line, size_t len)
 {
 	int	*ptr;
-	size_t	len;
 
-	len = 0;
 	ptr = 0;
 	while (line != NULL)
 	{
+		free(line);
 		line = get_next_line(fd);
-		if (*linecount == 0)
-			len = check_first_line(line);
-		else
-			ptr = line_check(line, len);
+		ft_printf("%s\n", line);
+		ptr = line_check(line, len);
 		if (line != 0)
 			*linecount = *linecount + 1;
 	}
@@ -97,7 +94,6 @@ void	iterate_map(int fd, size_t *linecount, char *line)
 		else
 			item_error(line, ptr);
 	}
-	ptr = 0;
 	free(line);
 }
 
@@ -107,18 +103,21 @@ char	**map_check(char *filename, t_items *item)
 	size_t	linecount;
 	char	*line;
 	char	**map;
+	size_t	len;
 	
-	line = "";
 	linecount = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
+	{
+		ft_printf("Error\nUnable to open file");
 		exit(EXIT_FAILURE);
-	iterate_map(fd, &linecount, line);
+	}
+	line = get_next_line(fd);
+	len = check_first_line(line);
+	linecount++;
+	ft_printf("%s\n", line);
+	iterate_map(fd, &linecount, line, len);
 	close(fd);
-	/*fd = open(filename, O_RDONLY);
-	if(fd == -1)
-		exit(EXIT_FAILURE);*/
 	map = make_map_array(filename, linecount, item);
 	return (map);
 }
-

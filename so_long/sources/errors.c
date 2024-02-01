@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:10:04 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/31 12:51:46 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/01 09:51:45 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	map_error(char	*str, int flag)
 	ft_printf("Error\n%s\n", errors[flag]);
 	free(str);
 	str = 0;
-	exit (EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 void	item_error(char *line, int *ptr)

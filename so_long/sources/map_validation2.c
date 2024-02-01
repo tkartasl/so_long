@@ -6,13 +6,13 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:12:39 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/31 17:04:36 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:52:15 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	clean_map(char **map)
+static void	clean_map(char **map)
 {
 	int	i;
 	int	j;
@@ -29,6 +29,8 @@ void	clean_map(char **map)
 				map[j][i] = 'C';
 			if (map[j][i] == 'e')
 				map[j][i] = 'E';
+			if (map[j][i] == 'P')
+				map[j][i] = '0';	
 			i++;
 		}
 		i = 0;
@@ -36,7 +38,7 @@ void	clean_map(char **map)
 	}
 }
 
-void	find_player_position(char **map, t_items *item)
+static void	find_player_position(char **map, t_items *item)
 {
 	int	row;
 	int	column;
@@ -61,7 +63,7 @@ void	find_player_position(char **map, t_items *item)
 	}
 }
 
-int	flood_fill(char **map, t_items *item, size_t lc, size_t row, size_t col)
+static int	flood_fill(char **map, t_items *item, size_t lc, size_t row, size_t col)
 {
 	size_t	len;
 	static int	collectibles;
@@ -90,7 +92,7 @@ int	flood_fill(char **map, t_items *item, size_t lc, size_t row, size_t col)
 	return (collectibles);
 }
 
-void	validate_path(char **map, t_items *item, size_t linecount)
+static void	validate_path(char **map, t_items *item, size_t linecount)
 {
 	size_t	row;
 	size_t	col;
@@ -116,20 +118,23 @@ void	validate_path(char **map, t_items *item, size_t linecount)
 char	**make_map_array(char *filename, size_t linecount, t_items *item)
 {
 	char	**map;
-	int		i;
+	size_t	i;
 	int		fd;
-	
+
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
+	{
+		ft_printf("Error\nUnable to open file");
 		exit(EXIT_FAILURE);
+	}
 	i = 0;
 	map = malloc((linecount + 1) * sizeof(char *));
 	if (map == 0)
 		exit(EXIT_FAILURE);
-	map[linecount + 1] = 0;
-	while (map[i] != 0)
+	while (i < linecount + 1)
 	{
 		map[i] = get_next_line(fd);
+		ft_printf("%s", map[i]);
 		i++;
 	}
 	close(fd);

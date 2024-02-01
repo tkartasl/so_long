@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:12:14 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/31 16:36:51 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/01 10:44:38 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static	void	get_graphics(t_data *data, t_textures *tx)
 	create_images(data);
 	get_textures(data, tx);
 	texture_to_image(data, tx);
-	wall_image_to_map(data);
 	floor_image_to_map(data);
+	wall_image_to_map(data);
 	exit_image_to_map(data);
 	player_image_to_map(data);
 	pizza_image_to_map(data);
