@@ -6,14 +6,25 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:12:14 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/01 10:44:38 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:16:16 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	my_resize_hook(int width, int height, void *param)
+{
+	t_data	*data;
+
+	data = param;
+	
+}
+
 static	void	get_graphics(t_data *data, t_textures *tx)
 {
+	int	i;
+
+	i = 0;
 	create_images(data);
 	get_textures(data, tx);
 	texture_to_image(data, tx);
@@ -21,8 +32,9 @@ static	void	get_graphics(t_data *data, t_textures *tx)
 	wall_image_to_map(data);
 	exit_image_to_map(data);
 	player_image_to_map(data);
-	pizza_image_to_map(data);
+	pizza_image_to_map(data);	
 }
+
 
 static	void	create_window(t_data *data, t_textures *tx)
 {	
@@ -43,6 +55,7 @@ static	void	create_window(t_data *data, t_textures *tx)
 		//error_map_size(map);
 	get_graphics(data, tx);
 	mlx_key_hook(data->mlx, &my_key_hook, data);
+	mlx_resize_hook(data->mlx, &my_resize_hook, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
 	ft_free_pointer_array(data->map);

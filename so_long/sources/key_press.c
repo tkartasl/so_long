@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:20:13 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/01 16:31:42 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:07:12 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,13 @@ static	void	remove_collectable(t_data *data, int x , int y)
 	int	i;
 
 	i = 0;
-	ft_printf("instance: %p", data->pizza->instances);
-	while (data->pizza->instances[i].x != x
-			|| data->pizza->instances[i].y != y)
+	while (data->pizza->instances[i].x != data->player->instances->x ||
+			data->pizza->instances[i].y != data->player->instances->y)
 			i++;
-	data->pizza->instances->enabled = false;
+	data->pizza->instances[i].enabled = false;
 	data->map[y][x] = '0';
-	data->info->c_count--;		
+	data->info->c_count--;
 }
-
 
 static int	check_if_player_can_move(int x, int y, t_data *data, char key)
 {
@@ -78,7 +76,6 @@ static	void	move_player(t_data *data, char key)
 	y = data->info->p_pos_r;
 	if (check_if_player_can_move(x, y, data, key) == 1)
 		return ;
-	ft_printf("x: %d, y: %d\n", x, y);
 	if (key == 'W' && data->map[y][x] != '1')
 		data->player->instances[0].y -= 50;
 	if (key == 'S' && data->map[y][x] != '1')
@@ -92,7 +89,7 @@ static	void	move_player(t_data *data, char key)
 	if (data->map[y][x] == 'E')
 		check_if_finished(data);
 	key_press_count++;
-	//ft_printf("Movement count: %d\n", key_press_count);
+	ft_printf("Movement count: %d\n", key_press_count);
 }
 
 void	my_key_hook(mlx_key_data_t keydata, void *param)

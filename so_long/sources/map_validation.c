@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 09:02:39 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/01 10:28:41 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:45:30 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ static void	iterate_map(int fd, size_t *linecount, char *line, size_t len)
 	{
 		free(line);
 		line = get_next_line(fd);
-		ft_printf("%s\n", line);
 		ptr = line_check(line, len);
 		if (line != 0)
 			*linecount = *linecount + 1;
@@ -115,7 +114,6 @@ char	**map_check(char *filename, t_items *item)
 	line = get_next_line(fd);
 	len = check_first_line(line);
 	linecount++;
-	ft_printf("%s\n", line);
 	iterate_map(fd, &linecount, line, len);
 	close(fd);
 	map = make_map_array(filename, linecount, item);
