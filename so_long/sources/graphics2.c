@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:23:03 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/01 14:56:28 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/02 12:44:27 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	pizza_image_to_map(t_data *data)
 {
 	int	x;
 	int	y;
-
+	
 	x = 0;
 	y = 0;
 	while (data->map[y] != 0)
@@ -99,7 +99,7 @@ void	pizza_image_to_map(t_data *data)
 			{
 				if (mlx_image_to_window(data->mlx, data->pizza,
 						IMG * x, IMG * y) < 0)
-					ft_error(data->map);	
+					ft_error(data->map);
 			}
 			x++;
 		}

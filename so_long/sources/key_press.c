@@ -6,7 +6,11 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:20:13 by tkartasl          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/02/02 19:32:55 by tkartasl         ###   ########.fr       */
+=======
+/*   Updated: 2024/02/02 13:07:12 by tkartasl         ###   ########.fr       */
+>>>>>>> d530c21238453209c8b7abe8afc433c0fb8a2305
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +37,18 @@ static	void	remove_collectable(t_data *data, int x, int y)
 	int	i;
 
 	i = 0;
+<<<<<<< HEAD
 	while (data->player->instances->x != data->pizza->instances[i].x || 
             data->player->instances->y != data->pizza->instances[i].y)
+=======
+	while (data->pizza->instances[i].x != data->player->instances->x ||
+			data->pizza->instances[i].y != data->player->instances->y)
+>>>>>>> d530c21238453209c8b7abe8afc433c0fb8a2305
 			i++;
 	data->pizza->instances[i].enabled = false;
 	data->map[y][x] = '0';
-	data->info->c_count--;		
+	data->info->c_count--;
 }
-
 
 static int	check_if_player_can_move(int x, int y, t_data *data, char key)
 {
@@ -90,7 +98,7 @@ static	void	move_player(t_data *data, char key)
 	if (data->map[y][x] == 'E')
 		check_if_finished(data);
 	key_press_count++;
-	//ft_printf("Movement count: %d\n", key_press_count);
+	ft_printf("Movement count: %d\n", key_press_count);
 }
 
 void	my_key_hook(mlx_key_data_t keydata, void *param)

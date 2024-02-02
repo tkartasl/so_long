@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:10:04 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/01 09:51:45 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:01:13 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	map_error(char	*str, int flag)
 {
 	char	*errors[3]= {"Map has incorrect shape",
 			"Map not completely surrounded by walls",
-			"Incorrect character inside the map"};
+			"Incorrect character in the map"};
 	ft_printf("Error\n%s\n", errors[flag]);
 	free(str);
 	str = 0;
