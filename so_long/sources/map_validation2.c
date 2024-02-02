@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:12:39 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/01 14:52:15 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:36:06 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ char	**make_map_array(char *filename, size_t linecount, t_items *item)
 	while (i < linecount + 1)
 	{
 		map[i] = get_next_line(fd);
-		ft_printf("%s", map[i]);
 		i++;
 	}
 	close(fd);

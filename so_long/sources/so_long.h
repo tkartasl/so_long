@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:16:44 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/31 17:06:41 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:28:48 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # 	define IMG 50
 # endif
 # include "../libft/libft.h"
-# include "../../../MLX42/include/MLX42/MLX42.h"
+# include "../../../../MLX42/include/MLX42/MLX42.h"
 
 typedef struct s_items
 {
