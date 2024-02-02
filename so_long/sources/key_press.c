@@ -6,11 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:20:13 by tkartasl          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/02/02 19:32:55 by tkartasl         ###   ########.fr       */
-=======
-/*   Updated: 2024/02/02 13:07:12 by tkartasl         ###   ########.fr       */
->>>>>>> d530c21238453209c8b7abe8afc433c0fb8a2305
+/*   Updated: 2024/02/02 22:46:54 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +33,8 @@ static	void	remove_collectable(t_data *data, int x, int y)
 	int	i;
 
 	i = 0;
-<<<<<<< HEAD
-	while (data->player->instances->x != data->pizza->instances[i].x || 
-            data->player->instances->y != data->pizza->instances[i].y)
-=======
 	while (data->pizza->instances[i].x != data->player->instances->x ||
 			data->pizza->instances[i].y != data->player->instances->y)
->>>>>>> d530c21238453209c8b7abe8afc433c0fb8a2305
 			i++;
 	data->pizza->instances[i].enabled = false;
 	data->map[y][x] = '0';

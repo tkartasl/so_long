@@ -6,11 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 09:02:39 by tkartasl          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/02/02 20:44:03 by tkartasl         ###   ########.fr       */
-=======
-/*   Updated: 2024/02/02 14:45:30 by tkartasl         ###   ########.fr       */
->>>>>>> d530c21238453209c8b7abe8afc433c0fb8a2305
+/*   Updated: 2024/02/02 22:49:48 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +82,6 @@ static void	iterate_map(int fd, size_t *linecount, char *line, size_t len)
 	{
 		free(line);
 		line = get_next_line(fd);
-<<<<<<< HEAD
-        ft_printf("%s", line);
-=======
->>>>>>> d530c21238453209c8b7abe8afc433c0fb8a2305
 		ptr = line_check(line, len);
 		if (line != 0)
 			*linecount = *linecount + 1;
@@ -120,7 +112,6 @@ char	**map_check(char *filename, t_items *item)
 		exit(EXIT_FAILURE);
 	}
 	line = get_next_line(fd);
-    ft_printf("%s", line);
 	len = check_first_line(line);
 	linecount++;
 	iterate_map(fd, &linecount, line, len);
