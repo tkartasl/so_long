@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_press.c                                        :+:      :+:    :+:   */
+/*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:20:13 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/02 22:46:54 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:11:52 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ static	void	check_if_finished(t_data *data)
 		data->player->enabled = false;
 		image = mlx_put_string(data->mlx, success, 0, 0);
 		if (image == 0)
-			ft_error(data->map);
+			ft_error(data);
 	}
 }
 
-static	void	remove_collectable(t_data *data, int x, int y)
+static	void	remove_collectable(t_data *data, int x , int y)
 {
 	int	i;
 
@@ -77,13 +77,13 @@ static	void	move_player(t_data *data, char key)
 	if (check_if_player_can_move(x, y, data, key) == 1)
 		return ;
 	if (key == 'W' && data->map[y][x] != '1')
-		data->player->instances[0].y -= 50;
+		data->player->instances[0].y -= data->img_size;
 	if (key == 'S' && data->map[y][x] != '1')
-		data->player->instances[0].y += 50;
+		data->player->instances[0].y += data->img_size;
 	if (key == 'A' && data->map[y][x] != '1')
-		data->player->instances[0].x -= 50;
+		data->player->instances[0].x -= data->img_size;
 	if (key == 'D' && data->map[y][x] != '1')
-		data->player->instances[0].x += 50;
+		data->player->instances[0].x += data->img_size;
 	if (data->map[y][x] == 'C')
 		remove_collectable(data, x, y);
 	if (data->map[y][x] == 'E')

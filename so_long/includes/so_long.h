@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:16:44 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/01/31 16:18:47 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:52:56 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef	struct s_data
 	mlx_image_t	*pizza;
 	t_items		*info;
 	char		**map;
+	int			img_size;
 }		t_data;
 
 typedef	struct s_textures
@@ -51,12 +52,13 @@ typedef	struct s_textures
 
 void	item_error(char *line, int *ptr);
 void	map_error(char	*str, int flag);
-void	ft_error(char **map);
+void	ft_error(t_data *data);
 void	error_map_size(char **map);
-void	map_check(char *filename, t_data *data);
-void	make_map_array(int fd, size_t linecount, t_data *data);
+char	**map_check(char *filename, t_items *item);
+char	**make_map_array(char *filename, size_t linecount, t_items *item);
 void	create_images(t_data *data);
 void	get_textures(t_data *data, t_textures *texture);
+void	texture_to_image(t_data *data, t_textures *tx);
 void	texture_to_image(t_data *data, t_textures *tx);
 void	floor_image_to_map(t_data *data);
 void	pizza_image_to_map(t_data *data);

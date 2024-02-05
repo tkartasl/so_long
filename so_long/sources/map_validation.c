@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 09:02:39 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/02 22:49:48 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/05 09:27:57 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,8 @@ static void	iterate_map(int fd, size_t *linecount, char *line, size_t len)
 		if (line != 0)
 			*linecount = *linecount + 1;
 	}
-	if (ptr[0] < 1 || ptr[1] != 1 || ptr[2] != 1 || *linecount >= len - 1)
-	{
-		if (*linecount >= len - 1)
-			map_error(line, 0);
-		else
+	if (ptr[0] < 1 || ptr[1] != 1 || ptr[2] != 1)
 			item_error(line, ptr);
-	}
 	free(line);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:10:04 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/02 13:01:13 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/05 13:38:37 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ void	error_map_size(char **map)
 		exit(EXIT_FAILURE);
 }
 
-void ft_error(char **map)
+void ft_error(t_data *data)
 {
-	ft_free_pointer_array(map);
+	ft_free_pointer_array(data->map);
     ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
+	//mlx_terminate(data->mlx);
     exit(EXIT_FAILURE);
 }
 

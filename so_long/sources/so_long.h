@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:16:44 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/02 22:44:27 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:52:29 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # 	define IMG 50
 # endif
 # include "../libft/libft.h"
-# include "../../../../MLX42/include/MLX42/MLX42.h"
+# include "../../../MLX42/include/MLX42/MLX42.h"
 
 typedef struct s_items
 {
@@ -38,6 +38,7 @@ typedef	struct s_data
 	mlx_image_t	*pizza;
 	t_items		*info;
 	char		**map;
+	int			img_size;
 }		t_data;
 
 typedef	struct s_textures
@@ -51,7 +52,7 @@ typedef	struct s_textures
 
 void	item_error(char *line, int *ptr);
 void	map_error(char	*str, int flag);
-void	ft_error(char **map);
+void	ft_error(t_data *data);
 void	error_map_size(char **map);
 char	**map_check(char *filename, t_items *item);
 char	**make_map_array(char *filename, size_t linecount, t_items *item);

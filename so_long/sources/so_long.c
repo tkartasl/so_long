@@ -6,35 +6,56 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:12:14 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/02 15:16:16 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:12:46 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	my_resize_hook(int width, int height, void *param)
+void	resize_images(t_data *data)
 {
-	t_data	*data;
+	if (mlx_resize_image(data->exit, data->img_size, data->img_size) == false)
+		ft_error(data);
+	if (mlx_resize_image(data->player, data->img_size,
+ 			data->img_size) == false)
+		ft_error(data);
+	if (mlx_resize_image(data->floor, data->img_size, data->img_size) == false)
+		ft_error(data);
+	if (mlx_resize_image(data->wall, data->img_size, data->img_size) == false)
+		ft_error(data);
+	if (mlx_resize_image(data->pizza, data->img_size, data->img_size) == false)
+		ft_error(data);
+}
 
-	data = param;
-	
+int	resize_window(t_data *data, int width, int height)
+{
+	unsigned int	new_size;
+	int				window_width;
+	int				window_height;
+
+	if (data->info->width * IMG > (size_t)width)
+		new_size = width / data->info->width;
+	else
+		new_size = height / data->info->height;
+	window_width = data->info->width * new_size;
+	window_height = data->info->height * new_size;
+	mlx_set_window_size(data->mlx, window_width, window_height);
+	return (new_size);
 }
 
 static	void	get_graphics(t_data *data, t_textures *tx)
 {
-	int	i;
-
-	i = 0;
 	create_images(data);
 	get_textures(data, tx);
 	texture_to_image(data, tx);
+	if (data->img_size > 0)
+		resize_images(data);
 	floor_image_to_map(data);
 	wall_image_to_map(data);
 	exit_image_to_map(data);
 	player_image_to_map(data);
-	pizza_image_to_map(data);	
+	pizza_image_to_map(data);
 }
-
 
 static	void	create_window(t_data *data, t_textures *tx)
 {	
@@ -46,16 +67,16 @@ static	void	create_window(t_data *data, t_textures *tx)
 	height = 0;
 	title = "Best Game Ever!";
 	data->mlx = mlx_init(data->info->width * IMG,
-			data->info->height * IMG, title, true);
+			data->info->height * IMG, title, false);
 	if (data->mlx == 0)
-		ft_error(data->map);
-	mlx_get_monitor_size(0, &width, &height);
+		ft_error(data);
 	mlx_set_window_limit(data->mlx, -1, -1, width, height);
-	//if (item->width > width || item->height > height)
-		//error_map_size(map);
+	mlx_get_monitor_size(0, &width, &height);
+	if (data->info->width * IMG > (size_t)width ||
+			data->info->height * IMG > (size_t)height)
+			data->img_size = resize_window(data, width, height);
 	get_graphics(data, tx);
 	mlx_key_hook(data->mlx, &my_key_hook, data);
-	mlx_resize_hook(data->mlx, &my_resize_hook, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
 	ft_free_pointer_array(data->map);
