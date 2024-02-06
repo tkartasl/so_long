@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics.c                                         :+:      :+:    :+:   */
+/*   graphics_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:48:52 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/06 08:44:16 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/06 09:56:48 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	texture_to_image(t_data *data, t_textures *tx)
 {
@@ -74,3 +74,18 @@ void	create_images(t_data *data)
 		ft_error(data);
 }
 
+void	movement_count_to_window(t_data *data, int key_press)
+{
+	char		*counter;
+	static int	i;
+	
+	if (data->player->enabled == false)
+		return ;
+	if (i > 0)
+		mlx_delete_image(data->mlx, data->count);
+	counter = ft_itoa(key_press);
+	data->count = mlx_put_string(data->mlx, counter, 0, 0);
+	if (data->count == 0)
+		ft_error(data);
+	i++;
+}

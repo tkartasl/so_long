@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation2.c                                  :+:      :+:    :+:   */
+/*   map_validation2_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:12:39 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/06 12:09:45 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/06 12:11:39 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	clean_map(char **map)
 {
@@ -94,10 +94,8 @@ static void	validate_path(char **map, t_items *item)
 {
 	size_t	row;
 	size_t	col;
-	int		collectibles;
-	int		flag;
+	int	collectibles;
 
-	flag = 0;
 	collectibles = 0;
 	row = 0;
 	col = 0;

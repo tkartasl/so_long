@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:16:44 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/06 13:35:39 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/06 09:25:30 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # 	define IMG 50
 # endif
 # include "../libft/libft.h"
-# include "../MLX42/include/MLX42/MLX42.h"
+# include "../../../MLX42/include/MLX42/MLX42.h"
 
 typedef struct s_items
 {
@@ -36,6 +36,7 @@ typedef	struct s_data
 	mlx_image_t	*player;
 	mlx_image_t	*exit;
 	mlx_image_t	*pizza;
+	mlx_image_t	*count;
 	t_items		*info;
 	char		**map;
 	int			img_size;
@@ -59,7 +60,6 @@ char	**make_map_array(char *filename, size_t linecount, t_items *item);
 void	create_images(t_data *data);
 void	get_textures(t_data *data, t_textures *texture);
 void	texture_to_image(t_data *data, t_textures *tx);
-void	texture_to_image(t_data *data, t_textures *tx);
 void	floor_image_to_map(t_data *data);
 void	pizza_image_to_map(t_data *data);
 void	wall_image_to_map(t_data *data);
@@ -67,4 +67,5 @@ void	exit_image_to_map(t_data *data);
 void	player_image_to_map(t_data *data);
 void	my_key_hook(mlx_key_data_t keydata, void *param);
 void	check_last_line(char **map, size_t linecount);
+void	movement_count_to_window(t_data *data, int key_press);
 #endif

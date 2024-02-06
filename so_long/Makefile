@@ -6,7 +6,7 @@
 #    By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/05 12:11:11 by tkartasl          #+#    #+#              #
-#    Updated: 2024/02/05 12:22:44 by tkartasl         ###   ########.fr        #
+#    Updated: 2024/02/06 14:55:59 by tkartasl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,29 +24,43 @@ OBJS = ${SRCS:.c=.o}
 
 LIBFT = libft/
 
+MLXDIR = MLX42
+
+HEADERS = -I ${MLXDIR}/include
+
+MLX42_A = MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+
 LIBFT_A = libft/libft.a
 
 MAKE = make
 
-FLAGS = -Wall -Wextra -Werror -I include
+FLAGS = -Wall -Wextra -Werror -Iincludes
 
-MLX_CC = libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+CC = cc ${FLAGS}
 
-CC = cc
+all: mlx42lib ${NAME}
 
-all: ${NAME}
+mlx42lib:
+	cmake ${MLXDIR} -B ${MLXDIR}/build && ${MAKE} -C ${MLXDIR}/build -j4
 
-${NAME}: ${OBJS}
+%.o: %.c
+	${CC} -o $@ -c $< ${HEADERS}
 
-${OBJS}: ${SRCS}
-	${MAKE} all -C ${LIBFT}
-	${CC} ${FLAGS} ${SRCS} ${LIBFT_A} ${MLX_CC} -c -o ${NAME}
+${NAME}: ${OBJS} ${LIBFT_A}
+	${CC} ${OBJS} ${MLX42_A} ${LIBFT_A} -o ${NAME}
+
+${LIBFT_A}:
+	${MAKE} -C ${LIBFT}
 
 clean:
 	${MAKE} clean -C ${LIBFT}
+	rm -rf ${OBJS}
+	rm -rf ${MLXDIR}/build
 
 fclean: clean
 	rm -f ${NAME}
 	${MAKE} fclean -C ${LIBFT}
 
 re: fclean all
+
+.PHONY: re, fclean, clean, all, mlx42lib 
