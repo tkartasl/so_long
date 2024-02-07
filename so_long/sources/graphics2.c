@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:23:03 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/05 16:09:03 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:08:00 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	player_image_to_map(t_data *data)
 	{
 		while (data->map[y][x] != 0 && data->map[y][x] != '\n')
 		{
-			if (y == data->info->p_pos_r && x == data->info->p_pos_c)	
+			if (y == data->info->p_pos_r && x == data->info->p_pos_c)
 			{
 				if (mlx_image_to_window(data->mlx, data->player,
 						data->img_size * x, data->img_size * y) < 0)
@@ -51,7 +51,7 @@ void	exit_image_to_map(t_data *data)
 	{
 		while (data->map[y][x] != 0 && data->map[y][x] != '\n')
 		{
-			if (data->map[y][x] == 'E')	
+			if (data->map[y][x] == 'E')
 			{
 				if (mlx_image_to_window(data->mlx, data->exit,
 						data->img_size * x, data->img_size * y) < 0)
@@ -94,7 +94,7 @@ void	pizza_image_to_map(t_data *data)
 {
 	int	x;
 	int	y;
-	
+
 	x = 0;
 	y = 0;
 	if (data->img_size == 0)
@@ -130,7 +130,7 @@ void	floor_image_to_map(t_data *data)
 		while (data->map[y][x] != 0 && data->map[y][x] != '\n')
 		{
 			if (mlx_image_to_window(data->mlx, data->floor,
-				data->img_size * x, data->img_size * y) < 0)
+					data->img_size * x, data->img_size * y) < 0)
 				ft_error(data);
 			x++;
 		}

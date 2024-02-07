@@ -6,14 +6,14 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:16:44 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/06 13:35:39 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:26:14 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # ifndef IMG
-# 	define IMG 50
+#  define IMG 50
 # endif
 # include "../libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
@@ -22,13 +22,13 @@ typedef struct s_items
 {
 	int		c_count;
 	int		exit;
-	int 	p_pos_r;
+	int		p_pos_r;
 	int		p_pos_c;
 	size_t	width;
 	size_t	height;
 }		t_items;
 
-typedef	struct s_data
+typedef struct s_data
 {
 	mlx_t		*mlx;
 	mlx_image_t	*wall;
@@ -41,7 +41,7 @@ typedef	struct s_data
 	int			img_size;
 }		t_data;
 
-typedef	struct s_textures
+typedef struct s_textures
 {
 	mlx_texture_t	*grass;
 	mlx_texture_t	*pizza;

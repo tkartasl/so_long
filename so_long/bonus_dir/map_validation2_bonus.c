@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:12:39 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/06 12:11:39 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:19:39 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	clean_map(char **map)
 			if (map[j][i] == 'e')
 				map[j][i] = 'E';
 			if (map[j][i] == 'P')
-				map[j][i] = '0';	
+				map[j][i] = '0';
 			i++;
 		}
 		i = 0;
@@ -69,7 +69,7 @@ static int	flood_fill(char **map, t_items *item, size_t row, size_t col)
 
 	if (row < 0 || row >= item->height || col < 0 || col >= item->width - 1)
 		return (collectibles);
-	if (map[row][col] == '1' || map[row][col] == 'x' || map[row][col] == 'c') 
+	if (map[row][col] == '1' || map[row][col] == 'x' || map[row][col] == 'c')
 		return (collectibles);
 	if (map[row][col] == '0')
 		map[row][col] = 'x';
@@ -94,12 +94,13 @@ static void	validate_path(char **map, t_items *item)
 {
 	size_t	row;
 	size_t	col;
-	int	collectibles;
+	int		collectibles;
+	int		flag;
 
+	flag = 0;
 	collectibles = 0;
 	row = 0;
 	col = 0;
-
 	find_player_position(map, item);
 	row = item->p_pos_r;
 	col = item->p_pos_c;

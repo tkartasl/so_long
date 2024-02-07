@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:48:52 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/06 08:44:16 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:06:42 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	texture_to_image(t_data *data, t_textures *tx)
 {
 	data->pizza = mlx_texture_to_image(data->mlx, tx->pizza);
-	mlx_delete_texture(tx->pizza);	
+	mlx_delete_texture(tx->pizza);
 	if (data->pizza == 0)
 		ft_error(data);
 	data->exit = mlx_texture_to_image(data->mlx, tx->exit);
 	mlx_delete_texture(tx->exit);
 	if (data->exit == 0)
-		ft_error(data);	
+		ft_error(data);
 	data->player = mlx_texture_to_image(data->mlx, tx->player);
 	mlx_delete_texture(tx->player);
 	if (data->player == 0)
@@ -38,19 +38,19 @@ void	texture_to_image(t_data *data, t_textures *tx)
 
 void	get_textures(t_data *data, t_textures *texture)
 {
-	texture->grass = mlx_load_png("../textures/grass.png");
+	texture->grass = mlx_load_png("textures/grass.png");
 	if (texture->grass == 0)
 		ft_error(data);
-	texture->pizza = mlx_load_png("../textures/pizza.png");
+	texture->pizza = mlx_load_png("textures/pizza.png");
 	if (texture->pizza == 0)
 		ft_error(data);
-	texture->player = mlx_load_png("../textures/Dudemonster.png");
+	texture->player = mlx_load_png("textures/Dudemonster.png");
 	if (texture->player == 0)
 		ft_error(data);
-	texture->exit = mlx_load_png("../textures/Blackhole.png");
+	texture->exit = mlx_load_png("textures/Blackhole.png");
 	if (texture->exit == 0)
 		ft_error(data);
-	texture->tree = mlx_load_png("../textures/bush1.png");
+	texture->tree = mlx_load_png("textures/bush1.png");
 	if (texture->tree == 0)
 		ft_error(data);
 }
@@ -62,7 +62,7 @@ void	create_images(t_data *data)
 		ft_error(data);
 	data->exit = mlx_new_image(data->mlx, IMG, IMG);
 	if (data->exit == 0)
-		ft_error(data);	
+		ft_error(data);
 	data->floor = mlx_new_image(data->mlx, IMG, IMG);
 	if (data->floor == 0)
 		ft_error(data);
@@ -73,4 +73,3 @@ void	create_images(t_data *data)
 	if (data->wall == 0)
 		ft_error(data);
 }
-

@@ -6,29 +6,29 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:16:44 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/06 09:25:30 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:25:07 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 # ifndef IMG
-# 	define IMG 50
+#  define IMG 50
 # endif
 # include "../libft/libft.h"
-# include "../../../MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 
 typedef struct s_items
 {
 	int		c_count;
 	int		exit;
-	int 	p_pos_r;
+	int		p_pos_r;
 	int		p_pos_c;
 	size_t	width;
 	size_t	height;
 }		t_items;
 
-typedef	struct s_data
+typedef struct s_data
 {
 	mlx_t		*mlx;
 	mlx_image_t	*wall;
@@ -42,7 +42,7 @@ typedef	struct s_data
 	int			img_size;
 }		t_data;
 
-typedef	struct s_textures
+typedef struct s_textures
 {
 	mlx_texture_t	*grass;
 	mlx_texture_t	*pizza;
@@ -68,4 +68,5 @@ void	player_image_to_map(t_data *data);
 void	my_key_hook(mlx_key_data_t keydata, void *param);
 void	check_last_line(char **map, size_t linecount);
 void	movement_count_to_window(t_data *data, int key_press);
+
 #endif

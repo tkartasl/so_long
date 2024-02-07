@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:20:13 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/06 12:13:32 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:22:09 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static	void	check_if_finished(t_data *data)
 		data->player->enabled = false;
 }
 
-static	void	remove_collectable(t_data *data, int x , int y)
+static void	remove_collectable(t_data *data, int x, int y)
 {
 	int	i;
 
 	i = 0;
-	while (data->pizza->instances[i].x != data->player->instances->x ||
-			data->pizza->instances[i].y != data->player->instances->y)
-			i++;
+	while (data->pizza->instances[i].x != data->player->instances->x
+		|| data->pizza->instances[i].y != data->player->instances->y)
+		i++;
 	data->pizza->instances[i].enabled = false;
 	data->map[y][x] = '0';
 	data->info->c_count--;
@@ -67,7 +67,7 @@ static	void	move_player(t_data *data, char key)
 	if (check_if_player_can_move(x, y, data, key) == 1)
 		return ;
 	key_press_count++;
-	movement_count_to_window(data, key_press_count);	
+	movement_count_to_window(data, key_press_count);
 	if (key == 'W' && data->map[y][x] != '1')
 		data->player->instances[0].y -= data->img_size;
 	if (key == 'S' && data->map[y][x] != '1')
@@ -85,7 +85,7 @@ static	void	move_player(t_data *data, char key)
 void	my_key_hook(mlx_key_data_t keydata, void *param)
 {
 	t_data	*data;
-	
+
 	data = param;
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 	{
@@ -106,7 +106,7 @@ void	my_key_hook(mlx_key_data_t keydata, void *param)
 	{
 		data->info->p_pos_c += 1;
 		move_player(data, 'D');
-	}	
+	}
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(data->mlx);
 }
