@@ -6,7 +6,7 @@
 #    By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/05 12:11:11 by tkartasl          #+#    #+#              #
-#    Updated: 2024/02/07 12:04:27 by tkartasl         ###   ########.fr        #
+#    Updated: 2024/02/07 18:55:36 by tkartasl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ CC = cc ${FLAGS}
 
 CC_BONUS = cc -Wall -Wextra -Werror
 
-all: mlx42lib ${NAME}
+all: ${NAME}
 
 mlx42lib: ${MLXDIR}
 	${MAKE} -C ${MLXDIR} -j4
@@ -61,16 +61,13 @@ ${MLXDIR}:
 %.o: %.c
 	${CC} -o $@ -c $<
 
-${NAME}: ${OBJS} ${LIBFT_A}
+${NAME}: ${OBJS} ${LIBFT_A} mlx42lib
 	${CC} ${OBJS} ${LIBFT_A} ${MLX42_A} -o ${NAME}
 
 ${LIBFT_A}:
 	${MAKE} -C ${LIBFT}
 
 bonus: mlx42lib ${NAME_BONUS}
-
-%.o: %.c
-	${CC} -o $@ -c $<
 
 ${NAME_BONUS}: ${OBJS_BONUS} ${LIBFT_A}
 	${CC_BONUS} ${OBJS_BONUS} ${LIBFT_A} ${MLX42_A} -o ${NAME_BONUS}

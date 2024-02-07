@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:12:39 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/07 13:19:39 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/07 18:37:49 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ static int	flood_fill(char **map, t_items *item, size_t row, size_t col)
 
 	if (row < 0 || row >= item->height || col < 0 || col >= item->width - 1)
 		return (collectibles);
-	if (map[row][col] == '1' || map[row][col] == 'x' || map[row][col] == 'c')
+	if (map[row][col] == '1' || map[row][col] == 'x'
+		|| map[row][col] == 'c' || map[row][col] == 'e')
 		return (collectibles);
 	if (map[row][col] == '0')
 		map[row][col] = 'x';

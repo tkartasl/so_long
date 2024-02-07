@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:12:14 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/07 13:18:00 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/07 18:36:06 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	resize_window(t_data *data, int width, int height)
 		new_size = height / data->info->height;
 	else
 		new_size = width / data->info->width;
+	if (data->info->height >= 82)
+		new_size -= 1;
 	window_width = data->info->width * new_size;
 	window_height = data->info->height * new_size;
 	mlx_set_window_size(data->mlx, window_width, window_height);
@@ -90,7 +92,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		ft_printf("Error\nWrong amount of arguments");
+		ft_printf("Error\nWrong amount of arguments\n");
 		return (1);
 	}
 	ft_memset(&item, 0, sizeof(t_items));
@@ -98,6 +100,12 @@ int	main(int argc, char *argv[])
 	ft_memset(&texture, 0, sizeof(t_textures));
 	data.map = map_check(argv[1], &item);
 	data.info = &item;
+	if (data.info->height > 100 || data.info->width > 150)
+	{
+		ft_free_pointer_array(data.map);
+		ft_printf("Error\nMap is too big\n");
+		exit(EXIT_FAILURE);
+	}
 	create_window(&data, &texture);
 	return (EXIT_SUCCESS);
 }

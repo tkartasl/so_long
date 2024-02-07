@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:10:04 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/07 13:54:22 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:13:21 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	error_map_size(char **map)
 {
-	ft_printf("Error\nMap doesn't properly fit to the screen");
+	ft_printf("Error\nMap doesn't properly fit to the screen\n");
 	ft_free_pointer_array(map);
 	exit(EXIT_FAILURE);
 }
