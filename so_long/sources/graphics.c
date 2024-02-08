@@ -6,13 +6,13 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:48:52 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/07 13:06:42 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/08 12:39:29 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	texture_to_image(t_data *data, t_textures *tx)
+static void	texture_to_image(t_data *data, t_textures *tx)
 {
 	data->pizza = mlx_texture_to_image(data->mlx, tx->pizza);
 	mlx_delete_texture(tx->pizza);
@@ -36,7 +36,7 @@ void	texture_to_image(t_data *data, t_textures *tx)
 		ft_error(data);
 }
 
-void	get_textures(t_data *data, t_textures *texture)
+static void	get_textures(t_data *data, t_textures *texture)
 {
 	texture->grass = mlx_load_png("textures/grass.png");
 	if (texture->grass == 0)
@@ -55,7 +55,7 @@ void	get_textures(t_data *data, t_textures *texture)
 		ft_error(data);
 }
 
-void	create_images(t_data *data)
+static void	create_images(t_data *data)
 {
 	data->pizza = mlx_new_image(data->mlx, IMG, IMG);
 	if (data->pizza == 0)
@@ -72,4 +72,18 @@ void	create_images(t_data *data)
 	data->wall = mlx_new_image(data->mlx, IMG, IMG);
 	if (data->wall == 0)
 		ft_error(data);
+}
+
+void	get_graphics(t_data *data, t_textures *tx)
+{
+	create_images(data);
+	get_textures(data, tx);
+	texture_to_image(data, tx);
+	if (data->img_size > 0)
+		resize_images(data);
+	floor_image_to_map(data);
+	wall_image_to_map(data);
+	exit_image_to_map(data);
+	player_image_to_map(data);
+	pizza_image_to_map(data);
 }

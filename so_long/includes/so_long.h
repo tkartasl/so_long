@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:16:44 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/07 13:26:14 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/08 12:24:06 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,8 @@ void	ft_error(t_data *data);
 void	error_map_size(char **map);
 char	**map_check(char *filename, t_items *item);
 char	**make_map_array(char *filename, size_t linecount, t_items *item);
-void	create_images(t_data *data);
-void	get_textures(t_data *data, t_textures *texture);
-void	texture_to_image(t_data *data, t_textures *tx);
-void	texture_to_image(t_data *data, t_textures *tx);
+void	get_graphics(t_data *data, t_textures *tx);
+void	resize_images(t_data *data);
 void	floor_image_to_map(t_data *data);
 void	pizza_image_to_map(t_data *data);
 void	wall_image_to_map(t_data *data);

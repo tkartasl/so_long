@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:12:14 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/07 18:36:06 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/08 12:39:58 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	resize_images(t_data *data)
 		ft_error(data);
 }
 
-int	resize_window(t_data *data, int width, int height)
+static int	resize_window(t_data *data, int width, int height)
 {
 	unsigned int	new_size;
 	int				window_width;
@@ -43,20 +43,6 @@ int	resize_window(t_data *data, int width, int height)
 	window_height = data->info->height * new_size;
 	mlx_set_window_size(data->mlx, window_width, window_height);
 	return (new_size);
-}
-
-static	void	get_graphics(t_data *data, t_textures *tx)
-{
-	create_images(data);
-	get_textures(data, tx);
-	texture_to_image(data, tx);
-	if (data->img_size > 0)
-		resize_images(data);
-	floor_image_to_map(data);
-	wall_image_to_map(data);
-	exit_image_to_map(data);
-	player_image_to_map(data);
-	pizza_image_to_map(data);
 }
 
 static	void	create_window(t_data *data, t_textures *tx)
@@ -84,6 +70,23 @@ static	void	create_window(t_data *data, t_textures *tx)
 	ft_free_pointer_array(data->map);
 }
 
+static void	check_file_format(char *filename)
+{
+	int	len;
+
+	len = ft_strlen(filename);
+	if (len < 4)
+	{
+		ft_printf("Error\nInvalid map format\n");
+		exit(EXIT_FAILURE);
+	}
+	if (ft_strncmp(".ber", &filename[len - 4], 4) != 0)
+	{
+		ft_printf("Error\nInvalid map format\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	t_items		item;
@@ -98,6 +101,7 @@ int	main(int argc, char *argv[])
 	ft_memset(&item, 0, sizeof(t_items));
 	ft_memset(&data, 0, sizeof(t_data));
 	ft_memset(&texture, 0, sizeof(t_textures));
+	check_file_format(argv[1]);
 	data.map = map_check(argv[1], &item);
 	data.info = &item;
 	if (data.info->height > 100 || data.info->width > 150)

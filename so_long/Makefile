@@ -6,7 +6,7 @@
 #    By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/05 12:11:11 by tkartasl          #+#    #+#              #
-#    Updated: 2024/02/07 18:55:36 by tkartasl         ###   ########.fr        #
+#    Updated: 2024/02/08 10:13:05 by tkartasl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ LIBFT = libft/
 
 MLXDIR = MLX42/build
 
-MLX42_A = ${MLXDIR}/libmlx42.a -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+MLX42_A = ${MLXDIR}/libmlx42.a
 
 LIBFT_A = libft/libft.a
 
@@ -46,13 +46,17 @@ MAKE = make
 
 FLAGS = -Wall -Wextra -Werror -Iincludes
 
+MLX42_FLAGS = -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+
 CC = cc ${FLAGS}
 
 CC_BONUS = cc -Wall -Wextra -Werror
 
 all: ${NAME}
 
-mlx42lib: ${MLXDIR}
+mlx42lib: ${MLX42_A} 
+
+${MLX42_A}: ${MLXDIR}
 	${MAKE} -C ${MLXDIR} -j4
 
 ${MLXDIR}:
@@ -61,16 +65,16 @@ ${MLXDIR}:
 %.o: %.c
 	${CC} -o $@ -c $<
 
-${NAME}: ${OBJS} ${LIBFT_A} mlx42lib
-	${CC} ${OBJS} ${LIBFT_A} ${MLX42_A} -o ${NAME}
+${NAME}: ${OBJS} ${LIBFT_A} ${MLX42_A}
+	${CC} ${OBJS} ${LIBFT_A} ${MLX42_A} ${MLX42_FLAGS} -o ${NAME}
 
 ${LIBFT_A}:
 	${MAKE} -C ${LIBFT}
 
-bonus: mlx42lib ${NAME_BONUS}
+bonus: ${NAME_BONUS}
 
-${NAME_BONUS}: ${OBJS_BONUS} ${LIBFT_A}
-	${CC_BONUS} ${OBJS_BONUS} ${LIBFT_A} ${MLX42_A} -o ${NAME_BONUS}
+${NAME_BONUS}: ${OBJS_BONUS} ${LIBFT_A} ${MLX42_A}
+	${CC_BONUS} ${OBJS_BONUS} ${LIBFT_A} ${MLX42_A} ${MLX42_FLAGS} -o ${NAME_BONUS}
 
 clean:
 	${MAKE} clean -C ${LIBFT}
