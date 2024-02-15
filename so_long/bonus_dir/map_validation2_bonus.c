@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:12:39 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/07 18:37:49 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/15 10:02:22 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ static void	find_player_position(char **map, t_items *item)
 	}
 }
 
-static int	flood_fill(char **map, t_items *item, size_t row, size_t col)
+static int	flood_fill(char **map, t_items *item, int row, int col)
 {
 	static int	collectibles;
 
-	if (row < 0 || row >= item->height || col < 0 || col >= item->width - 1)
+	if (row < 0 || row >= (int)item->height || col < 0
+		|| col >= (int)item->width - 1)
 		return (collectibles);
 	if (map[row][col] == '1' || map[row][col] == 'x'
 		|| map[row][col] == 'c' || map[row][col] == 'e')
@@ -93,8 +94,8 @@ static int	flood_fill(char **map, t_items *item, size_t row, size_t col)
 
 static void	validate_path(char **map, t_items *item)
 {
-	size_t	row;
-	size_t	col;
+	int		row;
+	int		col;
 	int		collectibles;
 	int		flag;
 
@@ -108,7 +109,7 @@ static void	validate_path(char **map, t_items *item)
 	collectibles = flood_fill(map, item, row, col);
 	if (collectibles != item->c_count || item->exit != 1)
 	{
-		ft_printf("Error\nNo valid path on the map");
+		ft_printf("Error\nNo valid path on the map\n");
 		ft_free_pointer_array(map);
 		exit(EXIT_FAILURE);
 	}

@@ -6,17 +6,16 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:16:44 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/08 12:34:08 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:46:01 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
-# ifndef IMG
-#  define IMG 50
-# endif
+# define IMG 50
 # include "../libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
+# include <fcntl.h>
 
 typedef struct s_items
 {

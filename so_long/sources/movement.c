@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:20:13 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/07 13:16:26 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:14:41 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 static	void	check_if_finished(t_data *data)
 {
-	char		*success;
 	mlx_image_t	*image;
 
 	image = 0;
-	success = "YOU ARE AMAZING!!!";
 	if (data->info->c_count == 0)
 	{
 		data->player->enabled = false;
-		image = mlx_put_string(data->mlx, success, 0, 0);
+		image = mlx_put_string(data->mlx, "YOU ARE AMAZING!!!", 0, 0);
 		if (image == 0)
 			ft_error(data);
 	}
@@ -79,13 +77,13 @@ static	void	move_player(t_data *data, char key)
 	key_press_count++;
 	if (data->player->enabled == true)
 		ft_printf("Movement count: %d\n", key_press_count);
-	if (key == 'W' && data->map[y][x] != '1')
+	if (key == 'W')
 		data->player->instances[0].y -= data->img_size;
-	if (key == 'S' && data->map[y][x] != '1')
+	if (key == 'S')
 		data->player->instances[0].y += data->img_size;
-	if (key == 'A' && data->map[y][x] != '1')
+	if (key == 'A')
 		data->player->instances[0].x -= data->img_size;
-	if (key == 'D' && data->map[y][x] != '1')
+	if (key == 'D')
 		data->player->instances[0].x += data->img_size;
 	if (data->map[y][x] == 'C')
 		remove_collectable(data, x, y);

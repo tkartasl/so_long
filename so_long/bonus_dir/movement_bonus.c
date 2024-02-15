@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:20:13 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/07 13:22:09 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/14 09:23:59 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ static	void	move_player(t_data *data, char key)
 		return ;
 	key_press_count++;
 	movement_count_to_window(data, key_press_count);
-	if (key == 'W' && data->map[y][x] != '1')
+	if (key == 'W')
 		data->player->instances[0].y -= data->img_size;
-	if (key == 'S' && data->map[y][x] != '1')
+	if (key == 'S')
 		data->player->instances[0].y += data->img_size;
-	if (key == 'A' && data->map[y][x] != '1')
+	if (key == 'A')
 		data->player->instances[0].x -= data->img_size;
-	if (key == 'D' && data->map[y][x] != '1')
+	if (key == 'D')
 		data->player->instances[0].x += data->img_size;
 	if (data->map[y][x] == 'C')
 		remove_collectable(data, x, y);

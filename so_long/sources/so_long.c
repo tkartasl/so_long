@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:12:14 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/08 12:39:58 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/15 08:12:19 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,17 @@ static int	resize_window(t_data *data, int width, int height)
 	int				window_width;
 	int				window_height;
 
-	if (data->info->height * IMG > (size_t)height)
-		new_size = height / data->info->height;
-	else
-		new_size = width / data->info->width;
-	if (data->info->height >= 82)
-		new_size -= 1;
+	new_size = IMG;
+	if ((data->info->height * new_size) > ((size_t)height - IMG))
+	{
+		while ((data->info->height * new_size) > ((size_t)height - IMG))
+			new_size--;
+	}
+	if (data->info->width * new_size > (size_t)width)
+	{
+		while (data->info->width * new_size > (size_t)width)
+			new_size--;
+	}
 	window_width = data->info->width * new_size;
 	window_height = data->info->height * new_size;
 	mlx_set_window_size(data->mlx, window_width, window_height);
@@ -58,8 +63,8 @@ static	void	create_window(t_data *data, t_textures *tx)
 			data->info->height * IMG, title, false);
 	if (data->mlx == 0)
 		ft_error(data);
-	mlx_set_window_limit(data->mlx, -1, -1, width, height);
 	mlx_get_monitor_size(0, &width, &height);
+	mlx_set_window_limit(data->mlx, -1, -1, width, height);
 	if (data->info->width * IMG > (size_t)width
 		|| data->info->height * IMG > (size_t)height)
 		data->img_size = resize_window(data, width, height);
@@ -104,7 +109,7 @@ int	main(int argc, char *argv[])
 	check_file_format(argv[1]);
 	data.map = map_check(argv[1], &item);
 	data.info = &item;
-	if (data.info->height > 100 || data.info->width > 150)
+	if (data.info->height > 80 || data.info->width > 120)
 	{
 		ft_free_pointer_array(data.map);
 		ft_printf("Error\nMap is too big\n");

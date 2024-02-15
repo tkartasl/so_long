@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 09:02:39 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/08 10:32:40 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/13 10:06:16 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	**map_check(char *filename, t_items *item)
 	line = get_next_line(fd);
 	if (line == 0)
 	{
-		ft_printf("Error\nEmpty file\n");
+		ft_printf("Error\nNo map found\n");
 		exit(EXIT_FAILURE);
 	}
 	len = check_first_line(line);

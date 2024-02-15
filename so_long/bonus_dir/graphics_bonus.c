@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:48:52 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/08 12:40:15 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/15 14:54:41 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static void	get_textures(t_data *data, t_textures *texture)
 	texture->pizza = mlx_load_png("textures/pizza.png");
 	if (texture->pizza == 0)
 		ft_error(data);
-	texture->player = mlx_load_png("textures/Dudemonster.png");
+	texture->player = mlx_load_png("textures/dudemonster.png");
 	if (texture->player == 0)
 		ft_error(data);
-	texture->exit = mlx_load_png("textures/Blackhole.png");
+	texture->exit = mlx_load_png("textures/blackhole.png");
 	if (texture->exit == 0)
 		ft_error(data);
 	texture->tree = mlx_load_png("textures/bush1.png");
@@ -79,11 +79,18 @@ void	movement_count_to_window(t_data *data, int key_press)
 	char		*counter;
 	static int	i;
 
+	(void)key_press;
 	if (data->player->enabled == false)
 		return ;
 	if (i > 0)
 		mlx_delete_image(data->mlx, data->count);
 	counter = ft_itoa(key_press);
+	if (counter == 0)
+	{
+		ft_free_pointer_array(data->map);
+		ft_printf("Error\nMalloc failure\n");
+		exit(EXIT_FAILURE);
+	}
 	data->count = mlx_put_string(data->mlx, counter, 0, 0);
 	if (data->count == 0)
 	{

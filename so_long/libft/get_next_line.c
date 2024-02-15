@@ -6,9 +6,10 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:43:07 by tkartasl          #+#    #+#             */
-/*   Updated: 2023/12/01 09:08:07 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/15 09:44:54 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static void	ft_get_remain(char *buffer)

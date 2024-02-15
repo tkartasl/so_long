@@ -6,7 +6,7 @@
 /*   By: tkartasl <tkartasl@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:48:52 by tkartasl          #+#    #+#             */
-/*   Updated: 2024/02/08 12:39:29 by tkartasl         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:53:59 by tkartasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static void	get_textures(t_data *data, t_textures *texture)
 	texture->pizza = mlx_load_png("textures/pizza.png");
 	if (texture->pizza == 0)
 		ft_error(data);
-	texture->player = mlx_load_png("textures/Dudemonster.png");
+	texture->player = mlx_load_png("textures/dudemonster.png");
 	if (texture->player == 0)
 		ft_error(data);
-	texture->exit = mlx_load_png("textures/Blackhole.png");
+	texture->exit = mlx_load_png("textures/blackhole.png");
 	if (texture->exit == 0)
 		ft_error(data);
 	texture->tree = mlx_load_png("textures/bush1.png");
